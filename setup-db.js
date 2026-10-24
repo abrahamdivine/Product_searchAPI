@@ -20,5 +20,4 @@ async function setupDatabase() {
     await pool.end();
   }
 }
-
 setupDatabase();
