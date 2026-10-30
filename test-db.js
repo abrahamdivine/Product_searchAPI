@@ -2,18 +2,20 @@ require("dotenv").config();
 
 const pool = require("./db");
 
-async function testConnection() {
+async function testProducts() {
   try {
     const result = await pool.query(
-      "SELECT id, name, category, price_kobo FROM products ORDER BY id"
+      "SELECT * FROM products ORDER BY id LIMIT 10"
     );
 
+     console.log("Query successful!");
+    console.log("Products returned:", result.rows.length);
     console.table(result.rows);
   } catch (error) {
-    console.error("Query failed:", error.message);
+    console.error("Database query failed:", error);
   } finally {
     await pool.end();
   }
 }
 
-testConnection();
+testProducts();
